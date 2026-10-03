@@ -1,9 +1,10 @@
-import { Project } from "@/types/project";
+import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
     slug: "makemytrip",
     title: "MakeMyTrip",
+    category: "Full Stack",
     summary:
       "Multi-tenant travel booking platform with payments, role-based access and race-safe seat booking.",
     description:
@@ -29,6 +30,7 @@ export const projects: Project[] = [
   {
     slug: "yatri",
     title: "Yatri",
+    category: "AI Agent",
     summary:
       "CLI travel companion with a hand-built ReAct agent that calls weather, currency and time tools.",
     description:
@@ -39,11 +41,14 @@ export const projects: Project[] = [
       "Fixed geocoding ambiguity (Manali, TN vs Manali, HP) and a shallow-copy mutation bug",
     ],
     tech: ["Node.js", "Groq", "Llama 3.3", "LangChain.js", "Open-Meteo"],
-    // TODO: repo push karke link daalo
+    // TODO(Paritosh): Yatri GitHub par push karo, phir yahan daalo:
+    // repo: "https://github.com/Paritosh012/<repo-name>",
+    // Tab tak card par "Code" button nahi dikhega (galat link se behtar).
   },
   {
     slug: "ai-portfolio-agent",
     title: "AI Portfolio Agent",
+    category: "Backend",
     summary:
       "Express and Mongoose backend with a ReAct orchestrator on Groq that answers questions about my work.",
     description:
@@ -53,6 +58,12 @@ export const projects: Project[] = [
       "Three tools backed by MongoDB data",
     ],
     tech: ["Express", "Mongoose", "Groq"],
-    // TODO: repo link
+    // TODO(Paritosh): agent ka backend GitHub par push karo, phir yahan daalo:
+    // repo: "https://github.com/Paritosh012/<repo-name>",
   },
 ];
+
+// Detail page slug se project dhoondhta hai. Na mile to undefined, page 404 dikhata hai.
+export function getProject(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}

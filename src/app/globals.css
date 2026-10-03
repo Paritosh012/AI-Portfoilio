@@ -1,26 +1,229 @@
 @import "tailwindcss";
 
+/* Design tokens. Ek hi jagah: purple badalna ho to sirf --hue badlo. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hue: 255;
 }
 
+@theme {
+  --color-bg: hsl(240 100% 2%);
+  --color-surface: hsl(240 8% 6%);
+  --color-title: hsl(240 8% 95%);
+  --color-body: hsl(240 8% 70%);
+  --color-muted: hsl(240 8% 50%);
+  --color-accent: hsl(var(--hue) 60% 64%);
+  --color-accent-alt: hsl(var(--hue) 80% 56%);
+  --color-accent-deep: hsl(var(--hue) 60% 56%);
+  --color-accent-light: hsl(var(--hue) 60% 74%);
+}
+
+/* next/font CSS variables <html> par lagte hain, isliye inline */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-padding-top: 7rem;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+    interpolate-size: allow-keywords;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: hsl(240 6% 12%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(240 6% 20%);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(240 6% 24%);
+}
+
+/* ---------- Reusable pieces ---------- */
+
+/* Section heading: display font, <span> accent colour.
+   Alignment aur margin call site par classes se (text-center, mb-12), taaki override saaf rahe. */
+@utility section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--color-title);
+
+  & span {
+    color: var(--color-accent);
+  }
+
+  @media (width >= 64rem) {
+    font-size: 2.25rem;
+  }
+}
+
+/* Glowing pill button */
+@utility btn-glow {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 1rem 2rem;
+  border: 3px solid var(--color-accent);
+  border-radius: 4rem;
+  background-color: var(--color-bg);
+  color: var(--color-title);
+  font-family: var(--font-display);
+  font-weight: 600;
+  box-shadow:
+    0 8px 32px hsl(var(--hue) 60% 64% / 0.5),
+    inset 8px -8px 30px var(--color-accent-deep);
+  transition: box-shadow 0.4s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow:
+      0 8px 48px hsl(var(--hue) 60% 64% / 0.7),
+      inset 8px -8px 30px var(--color-accent-deep);
+  }
+}
+
+/* Big soft glow behind cards */
+@utility blob {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    var(--color-accent) 0%,
+    var(--color-accent-alt) 100%
+  );
+  filter: blur(50px);
+  pointer-events: none;
+
+  @media (width >= 64rem) {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Rotating glow. Size aur blur call site par: "blob-spin size-[100px] blur-[35px]" */
+@utility blob-spin {
+  position: absolute;
+  border-radius: 9999px;
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-alt) 20%,
+    var(--color-accent-light) 100%
+  );
+  pointer-events: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: spin 5s linear infinite;
+  }
+}
+
+/* Skill / tech chip */
+@utility chip {
+  border: 1px solid var(--color-title);
+  border-radius: 4rem;
+  padding: 4px 10px;
+  background-color: var(--color-surface);
+  color: var(--color-title);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+}
+
+/* ---------- Motion ---------- */
+
+/* Hero letters: neeche se aate hain, rukte hain, upar nikal jaate hain, loop */
+@keyframes letter-cycle {
+  0% {
+    transform: translateY(100%);
+  }
+  12%,
+  78% {
+    transform: translateY(0);
+  }
+  90%,
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@utility letter {
+  display: inline-block;
+  white-space: pre;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: letter-cycle 6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    animation-delay: calc(var(--i) * 80ms);
+  }
+}
+
+/* transform animate karte hain, `translate` nahi: Tailwind ke translate-* classes
+   `translate` property use karte hain, dono alag rahenge to takraayenge nahi */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Page load par ek baar */
+@utility rise {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+/* Scroll par reveal, sirf CSS (scroll-driven animations).
+   Jis browser mein support nahi, wahan content seedha dikhta hai. */
+@utility reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+  }
+}
+
+/* <details> ka open/close height animate (jahan browser support kare) */
+@utility details-animate {
+  &::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition:
+      block-size 0.4s ease,
+      content-visibility 0.4s allow-discrete;
+  }
+
+  &[open]::details-content {
+    block-size: auto;
+  }
+
+  & summary {
+    list-style: none;
+  }
+
+  & summary::-webkit-details-marker {
+    display: none;
+  }
 }
