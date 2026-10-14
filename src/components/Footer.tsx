@@ -1,7 +1,6 @@
 import { site } from "@/data/site";
 
 export default function Footer() {
-  // Static build time par saal likha jaata hai; har deploy par update ho jaata hai
   const year = new Date().getFullYear();
 
   return (

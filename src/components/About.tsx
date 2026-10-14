@@ -1,8 +1,6 @@
 import { ArrowDown, FileText } from "lucide-react";
 import { site } from "@/data/site";
 
-// Photo ki jagah ek code card: dikhne mein developer-wala, aur info bhi deta hai.
-// Lines data ki tarah likhi hain taaki JSX whitespace ka jhanjhat na ho.
 type Tone = "keyword" | "string" | "name";
 type Token = [text: string, tone?: Tone];
 
@@ -61,7 +59,7 @@ export default function About() {
             <br />
             Matter Most
           </h2>
-          {/* TODO(Paritosh): ye paragraph apne shabdon mein likho */}
+
           <p className="mb-8 text-xl leading-relaxed lg:mb-12 lg:text-2xl lg:leading-relaxed">
             I&apos;m a{" "}
             <b className="font-semibold text-accent">Full Stack Developer</b>{" "}

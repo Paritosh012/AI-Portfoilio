@@ -41,9 +41,6 @@ export const projects: Project[] = [
       "Fixed geocoding ambiguity (Manali, TN vs Manali, HP) and a shallow-copy mutation bug",
     ],
     tech: ["Node.js", "Groq", "Llama 3.3", "LangChain.js", "Open-Meteo"],
-    // TODO(Paritosh): Yatri GitHub par push karo, phir yahan daalo:
-    // repo: "https://github.com/Paritosh012/<repo-name>",
-    // Tab tak card par "Code" button nahi dikhega (galat link se behtar).
   },
   {
     slug: "ai-portfolio-agent",
@@ -58,12 +55,9 @@ export const projects: Project[] = [
       "Three tools backed by MongoDB data",
     ],
     tech: ["Express", "Mongoose", "Groq"],
-    // TODO(Paritosh): agent ka backend GitHub par push karo, phir yahan daalo:
-    // repo: "https://github.com/Paritosh012/<repo-name>",
   },
 ];
 
-// Detail page slug se project dhoondhta hai. Na mile to undefined, page 404 dikhata hai.
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }

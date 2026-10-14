@@ -7,12 +7,10 @@ import { getProject, projects } from "@/data/projects";
 
 type Props = { params: Promise<{ slug: string }> };
 
-// Build time par har project ka page pehle se bana lo (static HTML, fast).
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-// Jo slug list mein nahi hai uske liye 404, runtime par naya page mat banao.
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -22,7 +20,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectPage({ params }: Props) {
-  // Next.js 15+ mein params ek Promise hai, isliye await
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();

@@ -1,6 +1,5 @@
 import type { TimelineEntry } from "@/types/content";
 
-// TODO(Paritosh): descriptions apne shabdon mein likho. Jo saal pakka pata ho wahi daalo.
 export const experience: TimelineEntry[] = [
   {
     title: "Full Stack Developer Intern",

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Design tokens. Ek hi jagah: purple badalna ho to sirf --hue badlo. */
 :root {
   --hue: 255;
 }
@@ -17,7 +16,6 @@
   --color-accent-light: hsl(var(--hue) 60% 74%);
 }
 
-/* next/font CSS variables <html> par lagte hain, isliye inline */
 @theme inline {
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-unbounded), ui-sans-serif, system-ui, sans-serif;
@@ -54,10 +52,6 @@ html {
   background-color: hsl(240 6% 24%);
 }
 
-/* ---------- Reusable pieces ---------- */
-
-/* Section heading: display font, <span> accent colour.
-   Alignment aur margin call site par classes se (text-center, mb-12), taaki override saaf rahe. */
 @utility section-title {
   font-family: var(--font-display);
   font-weight: 600;
@@ -74,7 +68,6 @@ html {
   }
 }
 
-/* Glowing pill button */
 @utility btn-glow {
   display: inline-flex;
   align-items: center;
@@ -99,7 +92,6 @@ html {
   }
 }
 
-/* Big soft glow behind cards */
 @utility blob {
   position: absolute;
   width: 250px;
@@ -119,7 +111,6 @@ html {
   }
 }
 
-/* Rotating glow. Size aur blur call site par: "blob-spin size-[100px] blur-[35px]" */
 @utility blob-spin {
   position: absolute;
   border-radius: 9999px;
@@ -135,7 +126,6 @@ html {
   }
 }
 
-/* Skill / tech chip */
 @utility chip {
   border: 1px solid var(--color-title);
   border-radius: 4rem;
@@ -146,9 +136,6 @@ html {
   font-size: 0.75rem;
 }
 
-/* ---------- Motion ---------- */
-
-/* Hero letters: neeche se aate hain, rukte hain, upar nikal jaate hain, loop */
 @keyframes letter-cycle {
   0% {
     transform: translateY(100%);
@@ -173,8 +160,6 @@ html {
   }
 }
 
-/* transform animate karte hain, `translate` nahi: Tailwind ke translate-* classes
-   `translate` property use karte hain, dono alag rahenge to takraayenge nahi */
 @keyframes rise {
   from {
     opacity: 0;
@@ -186,15 +171,12 @@ html {
   }
 }
 
-/* Page load par ek baar */
 @utility rise {
   @media (prefers-reduced-motion: no-preference) {
     animation: rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
 
-/* Scroll par reveal, sirf CSS (scroll-driven animations).
-   Jis browser mein support nahi, wahan content seedha dikhta hai. */
 @utility reveal {
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: view()) {
@@ -205,7 +187,6 @@ html {
   }
 }
 
-/* <details> ka open/close height animate (jahan browser support kare) */
 @utility details-animate {
   &::details-content {
     block-size: 0;

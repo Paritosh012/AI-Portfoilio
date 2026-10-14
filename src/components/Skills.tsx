@@ -1,7 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { skillGroups } from "@/data/skills";
 
-// <details>/<summary> se open-close: koi JavaScript nahi, keyboard aur screen reader built-in.
 export default function Skills() {
   return (
     <section id="skills" className="px-6 pt-16 pb-4 lg:pt-28 lg:pb-8">

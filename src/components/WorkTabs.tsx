@@ -6,8 +6,6 @@ import type { TimelineEntry } from "@/types/content";
 
 type Props = { experience: TimelineEntry[]; education: TimelineEntry[] };
 
-// Client component kyunki kaunsa tab khula hai, ye state hai.
-// ARIA tabs pattern: role="tablist"/"tab"/"tabpanel", arrow keys se tab badalta hai.
 export default function WorkTabs({ experience, education }: Props) {
   const id = useId();
   const tabs = [
@@ -74,7 +72,6 @@ export default function WorkTabs({ experience, education }: Props) {
         aria-labelledby={`${id}-tab-${current.key}`}
         className="relative pl-6 md:pl-0"
       >
-        {/* Timeline line: mobile par left, badi screen par beech mein */}
         <div
           aria-hidden="true"
           className="absolute top-0 left-0 h-full w-1 bg-linear-to-b from-accent/0 to-accent-deep after:absolute after:-bottom-px after:-left-1.5 after:size-4 after:rounded-full after:bg-accent-deep md:right-0 md:mx-auto"

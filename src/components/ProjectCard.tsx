@@ -36,8 +36,6 @@ export default function ProjectCard({
 
       <div className="my-8">
         <h3 className="mb-4 font-display text-xl font-semibold text-title lg:text-2xl">
-          {/* Stretched link: ::after poore card ko cover karta hai, to card kahin bhi click ho.
-              z-[1] taaki overview panel (relative) iske upar na aaye */}
           <Link
             href={`/projects/${project.slug}`}
             className="outline-none after:absolute after:inset-0 after:z-[1] after:rounded-[3rem] focus-visible:after:ring-2 focus-visible:after:ring-accent lg:after:rounded-[4rem]"
@@ -83,7 +81,6 @@ export default function ProjectCard({
       </div>
 
       {(project.repo || project.live) && (
-        // relative z-10: stretched link ke upar, taaki ye links alag se click hon
         <div className="relative z-10 mt-6 flex flex-wrap gap-3">
           {project.repo && (
             <a

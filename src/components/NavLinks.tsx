@@ -11,8 +11,6 @@ const links = [
   { id: "contact", label: "Contact" },
 ];
 
-// Jo section screen ke beech mein hai uska link highlight hota hai.
-// Client component kyunki IntersectionObserver browser API hai.
 export default function NavLinks() {
   const pathname = usePathname();
   const [active, setActive] = useState<string | null>(null);
@@ -27,14 +25,13 @@ export default function NavLinks() {
           if (entry.isIntersecting) setActive(entry.target.id);
         }
       },
-      // Screen ke beech ki patli patti: section is patti ko chhuye to "active"
+
       { rootMargin: "-45% 0px -50% 0px" },
     );
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [pathname]);
 
-  // Project detail page par koi section active nahi
   const current = pathname === "/" ? active : null;
 
   return (

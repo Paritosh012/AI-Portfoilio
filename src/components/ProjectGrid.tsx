@@ -3,7 +3,6 @@ import { projects } from "@/data/projects";
 
 export default function ProjectGrid() {
   return (
-    // aria-label: heading "Projects I've Built" hai, par region ka naam seedha "Projects" rakha
     <section
       id="projects"
       aria-label="Projects"

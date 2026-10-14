@@ -1,4 +1,3 @@
-// lucide-react mein brand icons nahi hain, isliye LinkedIn ka mark inline SVG hai (Simple Icons, CC0).
 export default function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg

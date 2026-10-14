@@ -1,4 +1,3 @@
-// lucide-react mein brand icons nahi hain, isliye GitHub ka mark inline SVG hai.
 export default function GitHubIcon({ className }: { className?: string }) {
   return (
     <svg

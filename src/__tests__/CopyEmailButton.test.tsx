@@ -7,7 +7,7 @@ describe("CopyEmailButton", () => {
   beforeEach(() => {
     jest.useFakeTimers();
     writeText.mockReset().mockResolvedValue(undefined);
-    // jsdom mein clipboard nahi hota, isliye fake lagaya
+
     Object.defineProperty(navigator, "clipboard", {
       value: { writeText },
       configurable: true,

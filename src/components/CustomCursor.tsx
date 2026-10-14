@@ -2,8 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// Mouse ke peeche chalne wala glowing circle. Sirf decoration:
-// touch screens aur "reduce motion" wale users ke liye CSS se hidden, system cursor waisa hi rehta hai.
 export default function CustomCursor() {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -16,7 +14,6 @@ export default function CustomCursor() {
     let scale = 1;
     let frame = 0;
 
-    // Har mousemove par style mat likho; ek frame mein ek baar (requestAnimationFrame)
     const render = () => {
       frame = 0;
       el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
@@ -32,7 +29,7 @@ export default function CustomCursor() {
       el.style.opacity = "1";
       schedule();
     };
-    // Link/button par cursor chhupa do, taaki text na dhake
+
     const onOver = (e: PointerEvent) => {
       const target = e.target as Element | null;
       scale = target?.closest("a, button, summary, [role='tab']") ? 0 : 1;

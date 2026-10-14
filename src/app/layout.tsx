@@ -7,7 +7,6 @@ import CustomCursor from "@/components/CustomCursor";
 import { site } from "@/data/site";
 import "./globals.css";
 
-// Font files project ke andar hain (OFL licence), isliye build ko Google Fonts tak network nahi chahiye.
 const montserrat = localFont({
   src: "./fonts/Montserrat.woff2",
   variable: "--font-montserrat",
@@ -35,7 +34,6 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    // data-scroll-behavior: page badalne par Next.js smooth scroll ko temporarily band karta hai
     <html
       lang="en"
       data-scroll-behavior="smooth"

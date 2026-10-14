@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react";
 import { Check, Copy } from "lucide-react";
 
-// Client component kyunki clipboard browser API hai aur "copied" ek state hai.
 export default function CopyEmailButton({ email }: { email: string }) {
   const [copied, setCopied] = useState(false);
 
-  // 2 second baad button wapas "Copy email"
   useEffect(() => {
     if (!copied) return;
     const timer = setTimeout(() => setCopied(false), 2000);
@@ -19,7 +17,6 @@ export default function CopyEmailButton({ email }: { email: string }) {
       await navigator.clipboard.writeText(email);
       setCopied(true);
     } catch {
-      // Clipboard block ho (purana browser, http): mail app khol do
       window.location.href = `mailto:${email}`;
     }
   }

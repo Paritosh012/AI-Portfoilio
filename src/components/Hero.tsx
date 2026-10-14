@@ -5,8 +5,6 @@ import GitHubIcon from "@/components/GitHubIcon";
 import LinkedInIcon from "@/components/LinkedInIcon";
 import { site } from "@/data/site";
 
-// Har letter alag span: CSS animation (globals.css `.letter`) unhe ek-ek karke upar laata hai.
-// Screen reader ke liye poora text sr-only mein hai, letters aria-hidden.
 function AnimatedLine({
   text,
   className = "",
@@ -25,13 +23,9 @@ function AnimatedLine({
   );
 }
 
-// Photo ho ya na ho, dono ek hi gole (circle) mein dikhte hain. Gola opaque hai,
-// isliye peeche ka glow kinaaron se "halo" bankar dikhta hai.
 const orb =
   "relative size-[240px] overflow-hidden rounded-full border border-accent/40 sm:size-[280px] lg:size-[380px]";
 
-// Photo: object-cover gole ko bharta hai, object-top chehra upar rakhta hai.
-// Isliye background wali normal photo bhi chal jaati hai, cut-out ki zaroorat nahi.
 function Portrait({ src, alt }: { src: string; alt: string }) {
   return (
     <div className={orb}>
@@ -47,7 +41,6 @@ function Portrait({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-// Photo na ho to initials
 function Monogram({ initials }: { initials: string }) {
   return (
     <div
@@ -93,9 +86,7 @@ export default function Hero() {
           </h1>
         </div>
 
-        {/* clip-path sirf neeche se kaatta hai (upar/side khule), taaki glow fade ke neeche dobara na dikhe */}
         <div className="relative grid justify-items-center pt-8 pb-12 [clip-path:inset(-20rem_-20rem_0_-20rem)] lg:pt-10 lg:pb-20">
-          {/* Glow: gole ke peeche, kinaaron se halo */}
           <div
             aria-hidden="true"
             className="blob-spin top-1/2 left-1/2 size-[300px] -translate-x-1/2 -translate-y-1/2 blur-[40px] sm:size-[340px] lg:size-[470px] lg:blur-[60px]"
@@ -107,7 +98,7 @@ export default function Hero() {
               <Monogram initials={initials} />
             )}
           </div>
-          {/* Neeche ka fade: image background mein ghul jaaye */}
+
           <div
             aria-hidden="true"
             className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-b from-bg/0 to-bg lg:h-48"
