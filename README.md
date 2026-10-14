@@ -2,7 +2,7 @@
 
 Personal portfolio of Paritosh Jaiswal, built with Next.js (App Router), TypeScript and Tailwind CSS v4.
 
-**Live:** _add Vercel URL here_
+**Live:** https://paritosh-jaiswal-portfolio.vercel.app
 
 ## Features
 
