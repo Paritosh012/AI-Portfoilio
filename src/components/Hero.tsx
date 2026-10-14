@@ -25,11 +25,34 @@ function AnimatedLine({
   );
 }
 
-// Photo na ho to initials wala orb. Opaque hai, taaki peeche ka glow photo ki tarah
-// kinaaron se "halo" bankar dikhe.
+// Photo ho ya na ho, dono ek hi gole (circle) mein dikhte hain. Gola opaque hai,
+// isliye peeche ka glow kinaaron se "halo" bankar dikhta hai.
+const orb =
+  "relative size-[240px] overflow-hidden rounded-full border border-accent/40 sm:size-[280px] lg:size-[380px]";
+
+// Photo: object-cover gole ko bharta hai, object-top chehra upar rakhta hai.
+// Isliye background wali normal photo bhi chal jaati hai, cut-out ki zaroorat nahi.
+function Portrait({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className={orb}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 1024px) 380px, 280px"
+        preload
+        className="object-cover object-top"
+      />
+    </div>
+  );
+}
+
+// Photo na ho to initials
 function Monogram({ initials }: { initials: string }) {
   return (
-    <div className="relative grid size-[240px] place-items-center rounded-full border border-accent/40 bg-bg bg-[radial-gradient(circle_at_50%_0%,hsl(255_60%_64%/0.22),transparent_70%)] shadow-[inset_0_0_60px_hsl(255_60%_64%/0.2)] sm:size-[280px] lg:size-[380px]">
+    <div
+      className={`${orb} grid place-items-center bg-bg bg-[radial-gradient(circle_at_50%_0%,hsl(255_60%_64%/0.22),transparent_70%)] shadow-[inset_0_0_60px_hsl(255_60%_64%/0.2)]`}
+    >
       <div className="absolute inset-4 rounded-full border border-dashed border-accent/25 lg:inset-7" />
       <span className="bg-linear-to-b from-title to-accent-light bg-clip-text font-display text-7xl font-semibold text-transparent lg:text-9xl">
         {initials}
@@ -72,25 +95,14 @@ export default function Hero() {
 
         {/* clip-path sirf neeche se kaatta hai (upar/side khule), taaki glow fade ke neeche dobara na dikhe */}
         <div className="relative grid justify-items-center pt-8 pb-12 [clip-path:inset(-20rem_-20rem_0_-20rem)] lg:pt-10 lg:pb-20">
-          {/* Glow: photo ho to neeche se (photo use dhak leti hai), orb ho to beech mein halo */}
+          {/* Glow: gole ke peeche, kinaaron se halo */}
           <div
             aria-hidden="true"
-            className={`blob-spin ${
-              site.photo
-                ? "bottom-6 size-[250px] blur-[35px] lg:bottom-12 lg:size-[450px] lg:blur-[50px]"
-                : "top-1/2 left-1/2 size-[300px] -translate-x-1/2 -translate-y-1/2 blur-[40px] sm:size-[340px] lg:size-[470px] lg:blur-[60px]"
-            }`}
+            className="blob-spin top-1/2 left-1/2 size-[300px] -translate-x-1/2 -translate-y-1/2 blur-[40px] sm:size-[340px] lg:size-[470px] lg:blur-[60px]"
           />
           <div className="relative rise">
             {site.photo ? (
-              <Image
-                src={site.photo}
-                alt={site.name}
-                width={600}
-                height={800}
-                preload
-                className="h-auto w-[320px] lg:w-[600px]"
-              />
+              <Portrait src={site.photo} alt={site.name} />
             ) : (
               <Monogram initials={initials} />
             )}

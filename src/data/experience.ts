@@ -7,7 +7,7 @@ export const experience: TimelineEntry[] = [
     org: "Cybrom Technology",
     period: "Feb – Apr 2026",
     description:
-      "Built the first version of MakeMyTrip, a multi-tenant travel booking platform, using React, Redux Toolkit, Node.js, Express and MongoDB.",
+      "Designed and built a MakeMyTrip-style multi-tenant travel booking SaaS end-to-end: role-based access for super admins, hosts and customers, Razorpay payments with server-side signature verification, and MongoDB transactions to stop double-booked seats.",
   },
   {
     title: "AI Agent Projects",
@@ -28,7 +28,7 @@ export const education: TimelineEntry[] = [
   {
     title: "Advanced MERN Stack Certification",
     org: "E&ICT Academy, IIT Guwahati",
-    // TODO(Paritosh): certification ka saal daalo
+    period: "Jan – Aug 2025",
     description:
       "Certification programme under MeitY, Government of India, covering MongoDB, Express, React and Node.js.",
   },
